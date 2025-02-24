@@ -1,0 +1,187 @@
+<?php
+session_start(); // Démarrer la session
+
+include_once 'database.php'; // Inclure votre fichier de connexion à la base de données
+include_once 'functions.php'; // Inclure vos fonctions // Inclure l'en-tête
+
+$messageCo = ""; // Initialiser le message de connexion
+$message = "";
+$successMessage = ""; 
+
+try {
+    $pdo = Database::getInstance(); // Singleton pour la connexion
+} catch (PDOException $e) {
+    error_log("Erreur de connexion : " . $e->getMessage());
+    die("Problème de connexion à la base de données");
+}
+
+if (isset($_SESSION['user'])) {
+    // Redirige vers une page d'accueil si l'utilisateur est déjà connecté
+    header('Location: index.php');
+    exit();
+}
+
+function emailExists($email) {
+    global $pdo;
+    $stmt = $pdo->prepare("SELECT id FROM utilisateurs WHERE email = :email");
+    $stmt->execute(['email' => $email]);
+    return (bool) $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Vérification du token CSRF
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        die("Erreur CSRF. Veuillez réessayer.");
+    }
+
+    if (isset($_POST['inscription'])) {
+        $tab = dataTestInscription();
+        if ($tab['erreur'] != '') {
+            $message = $tab['erreur'];
+        } elseif (emailExists($tab['email'])) {
+            $message = "Cette adresse e-mail est déjà utilisée. Veuillez en choisir une autre !";
+        } elseif (!readUserByLogin($tab['username'])) {
+            try {
+                if (addUser ($tab['username'], $tab['email'], $tab['password'])) {
+                    $successMessage = "Inscription réussie ! Vous pouvez maintenant vous connecter.";
+                } else {
+                    $message = "Une erreur est survenue lors de l'inscription. Veuillez réessayer.";
+                }
+            } catch (Exception $e) {
+                error_log("Erreur lors de l'insertion de l'utilisateur : " . $e->getMessage());
+                $message = "Une erreur est survenue lors de l'inscription. Veuillez réessayer.";
+            }
+        } else {
+            $message = "Ce nom d'utilisateur existe déjà. Veuillez en choisir un autre !";
+        }
+    }
+
+    if (isset($_POST['connexion'])) {
+        $tab = dataTestConnexion();
+        if ($tab['erreur'] != '') {
+            $messageCo = $tab['erreur'];
+        } else {
+            $data = readUserByLogin($tab['loginCo']);
+            if (!$data || !password_verify($tab['passwordCo'], $data['password'])) {
+                $messageCo = "Nom d'utilisateur ou mot de passe incorrect !";
+            } else {
+                session_regenerate_id(true);
+                $_SESSION['user'] = $data['username']; // Assurez-vous que cette ligne est atteinte
+                header("Location: accueilv2.php"); // Redirigez vers la page d'accueil PHP
+                exit();
+            }
+        }
+    }
+}
+
+// Générer un token CSRF
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bienvenue sur le site du Chelsea Fran Club, une communauté passionnée de supporters de Chelsea FC.">
+    <meta name="keywords" content="Chelsea, FC, football, supporters, communauté">
+    <meta name="author" content="Chelsea Fran Club">
+    <title> ACCUEIL - Chelsea Fran Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style/style2.css">
+    
+</head>
+<body>
+<header>
+    <div class="logo">
+        <a href="accueil.html">
+            <img src="../images CLUB/Logos/LOGO_DU_SITE-removebg-preview - Copie.png" alt="Logo Chelsea Fran Club">
+        </a>
+    </div>
+    <h1>Chelsea Fran Club</h1>    
+    <div class="auth-buttons">
+        <?php if (isset($_SESSION['user'])): ?>
+            <span>Bienvenue, <?php echo htmlspecialchars($_SESSION['user']); ?> !</span>
+            <a href="logout.php">Se déconnecter</a>
+        <?php else: ?>
+            <a href="auth/index.php">S'inscrire/ Se connecter</a>
+        <?php endif; ?>
+    </div>
+</header>
+<nav>
+    <ul>
+        <li><a href="accueilv2.html">Accueil</a></li>
+        <li><a href="actu2.html">Actualités</a></li>
+        <li><a href="match.html">Match</a></li>
+        <li>
+            <a href="#">Club</a>
+            <ul class="dropdown">
+                <li><a href="histoire.html">Notre Histoire</a></li>
+                <li><a href="statistiques.html">Statistiques</a></li>
+                <li><a href="effectif.html">Effectif</a></li>
+                <li><a href="classement.html">Saison 24/25</a></li>
+            </ul>
+        </li>
+        <li><a href="compte.html">Compte</a></li>
+    </ul>
+</nav>
+
+<main>    
+    <div class="form-wrapper"> <!-- Ajoutez cette div -->
+    <h2 id="formTitle">Inscription</h2>
+        <div class="toggle-container">
+            <input type="checkbox" id="toggle" class="toggle">
+            <label for="toggle" class="toggle-label"></label>
+            <span id="toggleText">S'inscrire</span>
+        </div>
+        <div class="form-container active" id="registrationFormContainer">
+            <form method="POST" action="">
+                <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Mot de passe" required>
+                <input type="password" name="confirm_password" placeholder="Confirmer le mot de passe" required>
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
+                <button type="submit" name="inscription">S'inscrire</button>
+                <div class="message"><?php echo htmlspecialchars($message); ?></div>
+                <div class="message" style="color: green;"><?php echo htmlspecialchars($successMessage); ?></div>
+            </form>
+        </div>
+        <div class="form-container" id="loginFormContainer">
+            <form method="POST" action="">
+                <input type="text" name="loginCo" placeholder="Nom d'utilisateur" required>
+                <input type="password" name="passwordCo" placeholder="Mot de passe" required>
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
+                <button type="submit" name="connexion">Se connecter</button>
+                <div class="message"><?php echo htmlspecialchars($messageCo); ?></div>
+            </form>   
+        </div>
+    </div> <!-- Fin de la div form-wrapper -->
+</main>
+<footer>
+    <div class="footer-links">
+        <a href="mentionslegales.html">Mentions légales</a>
+        <a href="aproposde.html">A propos de</a>
+        <a href="faq.html">Foire à questions</a>
+        <a href="motdepasseoublie.html">Mot de passe oublié ?</a>
+    </div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('toggle').addEventListener('change', function() {
+        console.log("Toggle changed"); // Ajoutez cette ligne pour le débogage
+        document.getElementById('registrationFormContainer').classList.toggle('active');
+        document.getElementById('loginFormContainer').classList.toggle('active');
+        document.getElementById('toggleText').textContent = this.checked ? "Se connecter" : "S'inscrire";
+        document.getElementById('formTitle').textContent = this.checked ? "Connexion" : "Inscription";
+    });
+});
+</script>
+</body>
+</html>

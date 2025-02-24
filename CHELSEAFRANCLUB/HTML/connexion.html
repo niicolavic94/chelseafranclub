@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Connexion au Chelsea Fran Club.">
+    <meta name="keywords" content="Chelsea, FC, football, connexion, communauté">
+    <meta name="author" content="Chelsea Fran Club">
+    <title>Connexion - Chelsea Fran Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style/style2.css"> <!-- Assurez-vous que le chemin est correct -->
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="accueil.html">
+                <img src="../images CLUB/Logos/LOGO_DU_SITE-removebg-preview - Copie.png" alt="Logo Chelsea Fran Club">
+            </a>
+        </div>
+        <h1>Chelsea Fran Club</h1>    
+        <div class="auth-buttons">
+            <a href="index.php">S'inscrire/ Se connecter</a>
+          
+        </div>
+        <div id="userInfo" style="display: none;">
+            <span id="welcomeMessage"></span>
+            <a href="logout.php">Déconnexion</a>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="accueilv2.html">Accueil</a></li>
+            <li><a href="actu2.html">Actualités</a></li>
+            <li><a href="match.html">Match</a></li>
+            <li>
+                <a href="#">Club</a>
+                <ul class="dropdown">
+                    <li><a href="histoire.html">Notre Histoire</a></li>
+                    <li><a href="statistiques.html">Statistiques</a></li>
+                    <li><a href="effectif.html">Effectif</a></li>
+                    <li><a href="classement.html">Saison 24/25</a></li>
+                </ul>
+            </li>
+            <li><a href="compte.html">Compte</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Connexion</h2>
+        <div class="form-container">
+            <form id="loginForm" method="POST" action="login.php"> 
+                <input type="text" id="username" name="username" placeholder="Nom d'utilisateur" required>
+                <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+                <button type="submit">Se connecter</button>
+                <p style="margin-top: 30px; font-size: 16px; color:black;">
+                    Pas encore inscrit ? <a href="inscription.html" style="color:whitesmoke; text-decoration: none; font-size: 15px;">Inscris toi ici</a>
+                </p>
+            </form>   
+            <div class="message" id="message"></div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="mentionslegales.html">Mentions légales</a>
+            <a href="aproposde.html">A propos de</a>
+             <a href="faq.html">Foire à questions</a>
+             <a href="motdepasseoublie.html">Mot de passe oublié ?</a>
+           
+        </div>
+    </footer>
+
+    
+    <script>
+        const form = document.getElementById('loginForm');
+        const messageDiv = document.getElementById('message');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche la soumission par défaut du formulaire
+
+            const formData = new FormData(form); // Récupère les données du formulaire
+
+            fetch('login.php', { // Assurez-vous que cela pointe vers le bon fichier PHP
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text()) // Récupère la réponse en texte
+            .then(data => {
+                messageDiv.innerHTML = data; // Affiche la réponse dans le div message
+
+                // Vérifiez si la connexion a réussi
+                if (data.includes("Connexion réussie")) {
+                    // Masquer les boutons de connexion et d'inscription
+                    document.getElementById('authButtons').style.display = 'none';
+                    
+                    // Afficher le message de bienvenue
+                    const username = document.getElementById('username').value; // Récupérer le nom d'utilisateur
+                    document.getElementById('welcomeMessage').textContent = `Bienvenue, ${username}!`;
+                    document.getElementById('userInfo').style.display = 'block';
+
+                    // Redirigez vers la page d'accueil ou mettez à jour l'interface utilisateur
+                    setTimeout(() => {
+                        window.location.href = 'accueilv2.html'; // Redirection vers la page d'accueil
+                    }, 2000); // Attendre 2 secondes avant la redirection
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                messageDiv.textContent = "Une erreur s'est produite. Veuillez réessayer.";
+            });
+        });
+    </script>
+
+</body>
+</html>

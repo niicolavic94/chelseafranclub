@@ -1,0 +1,1280 @@
+:root {
+    --primary-color: #0056b3;
+    --secondary-color: #d4af37;
+    --text-color: black;
+    --background-light: whitesmoke; /* Ajouté pour la cohérence */
+    --spacing: 10px; /* Variable pour l'espacement */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing);
+    background: linear-gradient(to right, #ffffff, var(--primary-color), #ffffff);
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.logo img {
+    max-width: 100%; /* Permet aux images de s'ajuster à leur conteneur */
+    height: auto; /* Maintient les proportions */
+    max-width: 200px;
+    margin-right: var(--spacing);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+h1, h2, h3 {
+    margin: var(--spacing) 0; 
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Bangers', sans-serif;
+    font-size: 4rem; /* Utilisation de rem pour la responsivité */
+    color: white;
+}
+
+h2 {
+    font-family: 'Bangers', sans-serif;
+    font-size: 2.5rem; /* Utilisation de rem pour la responsivité */
+    color: var(--primary-color);
+    margin-top: 40px; 
+    margin-bottom: 20px; 
+}
+
+.auth-buttons a {
+    text-decoration: none;
+    color: white;
+    background-color: var(--primary-color);
+    padding: var(--spacing) 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+.auth-buttons a:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Styles pour le menu */
+.menu {
+    display: none; /* Masque le menu par défaut */
+    list-style: none;
+    padding: 0;
+}
+
+.menu-toggle {
+    display: none; /* Masque le bouton de menu par défaut */
+}
+
+.menu-toggle {
+    display: flex; /* Utilise flexbox pour centrer le contenu */
+    align-items: center; /* Centre verticalement le contenu */
+    justify-content: center; /* Centre horizontalement le contenu */
+    width: 50px; /* Largeur du bouton */
+    height: 50px; /* Hauteur du bouton */
+    background-color: var(--primary-color); /* Couleur de fond */
+    border: none; /* Supprime la bordure par défaut */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Change le curseur au survol */
+    transition: background-color 0.3s, transform 0.2s; /* Transition pour les effets */
+    outline: none; /* Supprime le contour par défaut */
+    margin-left: var(--spacing); /* Ajoute un espacement à gauche */
+}
+
+.menu-toggle:hover {
+    background-color: var(--secondary-color); /* Change la couleur de fond au survol */
+    transform: scale(1.05); /* Légère augmentation de la taille au survol */
+}
+
+.menu-toggle .bar {
+    display: block; /* Affiche les barres du menu */
+    width: 30px; /* Largeur des barres */
+    height: 4px; /* Hauteur des barres */
+    margin: 4px auto; /* Espacement entre les barres */
+    background-color: white; /* Couleur des barres */
+    transition: all 0.3s; /* Transition pour les effets */
+}
+
+nav {
+    height: 100px; 
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-between; /* Ajouté pour espacer le bouton et le menu */
+    align-items: center; 
+    position: relative; /* Nécessaire pour le positionnement du dropdown */
+    padding: 0 20px; /* Ajout d'un padding pour espacer le contenu des bords */
+}
+
+nav ul {
+    display: flex; /* Affiche le menu en mode desktop */
+    justify-content: center; 
+    list-style: none;
+    padding: 0;
+    margin: 0; 
+    width: 80%; 
+}
+
+nav.active ul {
+    display: flex; /* Affiche le menu lorsque la classe 'active' est ajoutée */
+    flex-direction: column; /* Aligne les éléments verticalement */
+    width: 100%; /* Utilise toute la largeur */
+}
+
+nav ul li {
+    position: relative;
+    flex: 1; 
+    margin: 0 10px; /* Réduit l'espacement entre les éléments */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    background-color: var(--secondary-color);
+    padding: 15px 20px; /* Ajout d'un padding pour un meilleur clic */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100%; 
+    min-width: 100px; /* Largeur minimale pour les éléments de menu */
+}
+
+nav ul li a:hover {
+    text-decoration: none;
+    color: #0056b3;
+    background-color: white;
+}
+
+/* Ajout d'un style pour centrer le contenu du nav */
+nav ul {
+    flex-grow: 1; /* Permet au menu de prendre tout l'espace disponible */
+    justify-content: center; /* Centre les éléments horizontalement */
+}
+
+nav ul .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border-radius: 5px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+}
+
+nav ul li:hover .dropdown {
+    display: block;
+}
+
+nav ul .dropdown li a {
+    padding: 10px;
+    color: white;
+    text-align: left;
+    margin: 5px 0; /* Ajoute un espace de 5px en haut et en bas de chaque lien */
+    display: block; /* Assure que le lien occupe toute la largeur disponible */
+}
+
+nav ul .dropdown li a:hover {
+    background-color: black;
+}
+
+footer {
+    background: linear-gradient(to right, #ffffff, var(--primary-color), #ffffff);
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer-links a {
+    color: white;
+    margin: 0 10px;
+}
+
+/* ACCUEIL */
+.intro {
+    background-color: #0056b3; 
+    padding: 20px; 
+    border-radius: 10px; 
+    font-weight: bold; 
+    font-style: italic; 
+    text-align: center; 
+}
+
+.intro p {
+    color: white;
+}
+
+.gallery-img {
+    max-width: 100%; /* Permet aux images de s'ajuster à leur conteneur */
+    height: auto; /* Maintient les proportions */
+    object-fit: cover; 
+}
+
+ul {
+    list-style-type: none; 
+    padding: 0; 
+}
+
+a {
+    text-decoration: none; 
+}
+
+main {
+    padding: 0 15px; 
+}
+
+.section {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.club-intro {
+    text-align: center;
+}
+
+.news, .latest-news, .gallery {
+    border-radius: 10px;
+    padding: 20px; /* Espacement interne */
+}
+
+.news h2, .latest-news h2, .gallery h2, .useful-links h2 {
+    color: var(--primary-color);
+}
+
+.limited-width {
+    max-width: 800px; /* Ajustez la largeur maximale selon vos besoins */
+    margin: 0 auto; /* Centre la section horizontalement */
+    padding: 20px; /* Ajoute un peu d'espace à l'intérieur de la section */
+}
+
+.carousel-inner {
+    position: relative;
+    overflow: hidden; /* Assure que les images qui débordent ne soient pas visibles */
+}
+
+.carousel-inner img {
+    width: 100%; /* Permet aux images de s'ajuster à la largeur de leur conteneur */
+    height: 300px; /* Définissez une hauteur fixe selon vos besoins */
+    object-fit: cover; /* Remplit l'élément tout en conservant le ratio d'aspect */
+}
+
+.card-body {
+    text-align: center;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.table-container {
+    display: flex;
+    justify-content: center; /* Centre le tableau horizontalement */
+    width: 100%; /* S'assure que le conteneur s'adapte à la largeur de l'écran */
+}
+
+table {
+    width: 90%; /* Ajuste la largeur du tableau pour qu'il soit plus petit sur les petits écrans */
+    max-width: 800px; /* Largeur maximale pour éviter qu'il ne soit trop large */
+    margin: 20px auto; /* Centre le tableau avec une marge automatique */
+    border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    border: 1px solid var(--primary-color);
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: var(--highlight-color);
+}
+
+/* Styles pour le carrousel des Actualités */
+#newsCarousel {
+    border-radius: 10px; 
+}
+
+#newsCarousel .carousel-item {
+    text-align: center; 
+}
+
+#newsCarousel .carousel-item h5 {
+    color: #0056b3; 
+    font-size: 1.5rem; 
+    margin-bottom: 10px; 
+}
+
+#newsCarousel .carousel-item p {
+    color: #333; 
+    font-size: 1rem; 
+    margin-bottom: 15px; 
+}
+
+#newsCarousel .carousel-item ul {
+    padding-left: 20px; 
+}
+
+#newsCarousel .carousel-item ul li {
+    margin-bottom: 5px; 
+}
+
+/* Styles pour les Dernières Nouvelles */
+.latest-news-card {
+    background-color: #d4af37; 
+    border: 1px solid #007bff; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s; 
+    padding: 15px; 
+}
+
+.latest-news-card .card-text {
+    color: #333; 
+    font-size: 1rem; 
+}
+
+.latest-news-card ul {
+    padding-left: 20px; 
+}
+
+.latest-news-card ul li {
+    margin-bottom: 5px; 
+}
+
+.table-responsive {
+    display: flex;
+    justify-content: center; /* Centre le tableau horizontalement */
+}
+
+#classement-chelsea-table {
+    max-width: 900px; 
+    width: 100%; 
+    margin: 0 auto; 
+    border-collapse: collapse; 
+}
+
+#classement-chelsea-table th, 
+#classement-chelsea-table td {
+    border: 1px solid #ddd; 
+    padding: 8px; 
+    text-align: center; 
+    vertical-align: middle; 
+}
+
+#classement-chelsea-table th {
+    background-color: #d4af37; 
+}
+
+/* Réduire la largeur des cellules */
+#classement-chelsea-table td:nth-child(1) { 
+    width: 50px; 
+}
+
+#classement-chelsea-table th:nth-child(2), 
+#classement-chelsea-table td:nth-child(2) { 
+    width: 70px; 
+}
+
+#classement-chelsea-table td:nth-child(3) { 
+    width: 150px; 
+}
+
+#classement-chelsea-table td:nth-child(4) { 
+    width: 50px; 
+}
+
+/* Augmenter la taille des logos */
+#classement-chelsea-table img {
+    max-width: 100%; /* Permet aux images de s'ajuster à leur conteneur */
+    height: auto; /* Maintient les proportions */
+    width: 80px; 
+    height: 50px; 
+}
+
+/* Styles pour la galerie */
+.gallery-container {
+    height: auto; /* Ajustement pour la responsivité */
+    overflow: hidden; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.gallery-img {
+    max-width: 100%; /* Permet aux images de s'ajuster à leur conteneur */
+    height: auto; /* Maintient les proportions */
+    object-fit: cover; 
+}
+
+.useful-links {
+    background-color: #0056b3; 
+    border-radius: 10px; 
+    padding-bottom: 20px;
+}
+
+.useful-links h2 {
+    padding-top: 10px;
+    color: white;
+}
+
+.useful-links a {
+    text-decoration: none;
+    color: white; 
+    transition: color 0.3s; 
+}
+
+.useful-links a:hover {
+    color: #d4af37; 
+}
+
+.list-unstyled {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.list-unstyled li {
+    display: inline-block;
+}
+
+.mx-3 {
+    margin: 0 1rem;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ACTU */
+.accordion-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 10px auto;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.accordion-header:hover {
+    background-color: #d4af37;
+}
+
+.fa {
+    margin-right: 8px; 
+}
+
+.accordion-content {
+    display: none;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.accordion-text {
+    flex: 1;
+    text-align: left;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.accordion-image {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.accordion-image img {
+    max-width: 100%; /* Permet aux images de s'ajuster à leur conteneur */
+    height: auto; /* Maintient les proportions */
+    max-width: 350px; 
+    border-radius: 8px; 
+}
+
+.actu {
+    padding: 20px;
+    background-color: var(--background-light);
+}
+
+.transfer-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.transfer-icon {
+    margin: 0 10px; /* Ajoute 10px d'espace à gauche et à droite de l'icône */
+}
+
+.club-logo {
+    margin: 0 10px; /* Ajoute 10px d'espace à gauche et à droite de l'image */
+    object-fit: cover; /* Remplit l'élément tout en conservant le ratio d'aspect */
+}
+
+.transfer-table th, .transfer-table td {
+    border: 1px solid var(--primary-color);
+    padding: 10px;
+    text-align: center;
+}
+
+.transfer-table th {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.transfer-player {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.transfer-player img {
+    max-width: 100%; /* Permet aux images de s'ajuster à leur conteneur */
+    height: auto; /* Maintient les proportions */
+    max-width: 40px;
+    max-height: 40px;
+}
+
+/* MATCH */
+.discord-info, .live-info {
+    max-width: 900px; 
+    width: 90%; 
+    text-align: center; 
+    border-radius: 10px; 
+    padding: 20px; 
+    margin: 20px auto; 
+}
+
+.discord-info {
+    background-color: #d4af37;
+    color: black;
+}
+
+.discord-info h2 {
+    color: black;
+}
+
+.live-info h2 {
+    color: white;
+}
+
+.live-info {
+    background-color: #0056b3;
+}
+
+.live-info p {
+    color: white;
+}
+
+.live-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.discord-info ul {
+    text-align: center;
+    font-size: large;
+    color: black;
+    margin-bottom: 20px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.discord-info a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+p {
+    text-align: center;
+    color: black;
+    padding: 10px;
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+.live-info a {
+    text-align: center;
+    color: #d4af37;
+    text-decoration: none;
+}
+
+.live-info a:hover {
+    text-decoration: none;
+}
+
+#not-home {
+    position: relative; 
+}
+
+#not-home #prochain-match {
+    position: relative; 
+    color: white; 
+    border-radius: 10px; 
+    margin: 40px auto 20px; 
+    padding: 20px; 
+    overflow: hidden; 
+    max-width: 700px; 
+    width: 90%; 
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+#not-home #prochain-match::before {
+    content: ""; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    background-image: url('/images CLUB/Logos/stad1.jpg'); 
+    opacity: 0.95; 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    z-index: 1;
+}
+
+#not-home #prochain-match p, 
+#not-home #prochain-match h5 {
+    margin-top: 300px; 
+    color: white; 
+    position: relative; 
+    z-index: 2; 
+    font-size: 22px; 
+    padding: 15px; 
+    margin: 10px 0; 
+    text-shadow: 
+        2px 2px 5px rgba(0, 0, 0, 0.7), 
+        0 0 25px rgba(0, 0, 0, 0.5); 
+    text-align: left; 
+    font-weight: bold; 
+    opacity: 0; 
+    animation: fadeInUp 1s forwards; 
+}
+
+/* Animation de fondu et de montée */
+@keyframes fadeInUp {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    60% {
+        transform: translateY(-10px); 
+    }
+    80% {
+        transform: translateY(5px); 
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.card {
+    width: 100%; 
+    height: 100%; 
+}
+
+/* HISTOIRE */
+.chronologie p {
+    color: white; 
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text {
+    flex: 1;
+    text-align: center;
+    padding-right: 20px;
+}
+
+.slideshow {
+    flex: 2;
+    max-width: 600px;
+    height: 300px; 
+    position: relative;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.slideshow-images {
+    display: flex;
+    transition: transform 0.5s ease;
+    height: 100%;
+}
+
+.slideshow-images img {
+    max-width: 100%; /* Permet aux images de s'ajuster à leur conteneur */
+    height: auto; /* Maintient les proportions */
+    min-width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.timeline {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    margin-bottom: 20px;
+    padding: 20px 0;
+}
+
+.timeline-event {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    background-color: #0056b3;
+    color: black;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.timeline-event:hover {
+    color: black;
+    background-color: #d4af37;
+}
+
+.section {
+    display: none;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+ul {
+    padding-left: 20px; 
+}
+
+/* STATISTIQUES */
+
+.stats-container {
+    margin-top: 20px; /* Espacement au-dessus de la section des statistiques */
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between; /* Espace entre les conteneurs */
+    align-items: flex-start; /* Aligne les éléments en haut */
+    margin-top: 20px; /* Espacement entre le titre et le contenu */
+}
+
+.table-container, .chart-container {
+    flex: 1; /* Permet aux conteneurs de prendre une largeur égale */
+    margin: 0 10px; /* Ajoute un espacement horizontal entre les conteneurs */
+    max-width: 450px; /* Largeur maximale pour les conteneurs */
+    height: 400px; /* Hauteur fixe pour les tableaux et les graphiques */
+    box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur et la hauteur */
+}
+
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+tables-container {
+    min-width: 600px; /* Largeur minimale pour le conteneur des tableaux */
+    margin: 0 auto; /* Centre le conteneur horizontalement */
+    padding: 20px; /* Espacement interne */
+}
+
+table {
+    width: 100%; /* Assure que le tableau prend toute la largeur de son conteneur */
+    border-collapse: collapse; /* Évite les doubles bordures */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre pour le tableau */
+    border-radius: 8px; /* Coins arrondis */
+    overflow: hidden; /* Cache les débordements */
+    margin: 20px 0; /* Espacement vertical autour du tableau */
+}
+
+th, td {
+    border: 1px solid var(--primary-color); /* Bordure pour les cellules */
+    padding: 10px; /* Espacement interne des cellules */
+    text-align: center; /* Centre le texte dans les cellules */
+}
+
+th {
+    background-color: var(--secondary-color); /* Couleur de fond pour les en-têtes */
+    color: white; /* Couleur du texte pour les en-têtes */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Couleur de fond pour les lignes paires */
+}
+
+tr:hover {
+    background-color: var(--highlight-color); /* Couleur de fond au survol */
+}
+
+/* Styles pour les graphiques */
+.chart-container canvas {
+    width: 100%; /* Assure que le graphique prend toute la largeur de son conteneur */
+    height: 100%; /* Assure que le graphique prend toute la hauteur de son conteneur */
+}
+
+
+
+/* Effectif */
+.team-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.player-card {
+    background-color: #d4af37;
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.1s;
+    width: 270px;
+    min-height: 400px; 
+}
+
+.player-card:hover {
+    transform: scale(1.01); 
+}
+
+.player-card img {
+    max-width: 100%; /* Permet aux images de s'ajuster à leur conteneur */
+    height: auto; /* Maintient les proportions */
+    border-radius: 10px;
+    max-height: 240px; 
+    object-fit: contain; 
+}
+
+.next-button {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    text-decoration: none;
+    color: white;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    transition: background-color 0.3s;
+    margin: 10px auto; 
+    padding: 10px 20px; 
+}
+
+.next-button:hover {
+    background-color: black; 
+}
+
+.player-info {
+    flex-grow: 1;
+}
+
+.player-info h3 {
+    color: black; 
+    margin: 5px 0;
+    font-size: 20px; 
+}
+
+/* CLASSEMENT */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid var(--primary-color);
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#calendrier {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.calendrier {
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    background-color: #f9f9f9; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    overflow: auto; 
+}
+
+.mois-container {
+    margin: 20px;
+}
+
+.mois {
+    background-color: #d4af37;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+.mois:hover {
+    color: white;
+    background-color: #0056b3;
+}
+
+.matchs-container {
+    display: none; 
+    margin-top: 10px;
+}
+
+#calendrier .card {
+    background-color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card p {
+    color: white;
+    margin: 0;
+}
+
+/* CONNEXION INSCRIPTION */
+.form-wrapper {
+    display: flex;
+    flex-direction: column; /* Aligner les éléments en colonne */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh; /* Assurez-vous que cela prend toute la hauteur de la fenêtre */
+    background-color: #f8f9fa; /* Optionnel : couleur de fond pour le contraste */
+}
+
+.form-container {
+    background: linear-gradient(to right, #ffffff, var(--primary-color), #ffffff);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    max-width: 90%;
+    text-align: center; /* Centrer le texte à l'intérieur du conteneur */
+    transition: transform 0.3s ease-in-out;
+    display: none; /* Correction ici */
+}
+
+.form-container.active {
+    display: block; /* Afficher quand la classe active est ajoutée */
+}
+
+input, button {
+    width: 80%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 16px;
+    max-width: 100%;
+}
+
+button {
+    width: 60%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: green;
+}
+
+.message, .messageCo {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    color: red;
+}
+
+.success-message {
+    color: green;
+}
+
+/* Toggle Switch */
+.toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.toggle {
+    display: none;
+}
+
+.toggle-label {
+    cursor: pointer;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 15px;
+    position: relative;
+    transition: background 0.3s;
+}
+
+.toggle-label:before {
+    content: '';
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    background-color: white;
+    border-radius: 50%;
+    top: 1px;
+    left: 1px;
+    transition: transform 0.3s;
+}
+
+.toggle:checked + .toggle-label {
+    background-color: #007bff;
+}
+
+.toggle:checked + .toggle-label:before {
+    transform: translateX(30px);
+}
+
+
+/* Responsive */
+@media (min-width: 769px) {
+    nav {
+        display: flex; /* Affiche le menu en mode desktop */
+    }
+
+    .menu-toggle {
+        display: none; /* Masque le bouton de menu en mode desktop */
+    }
+
+    nav ul {
+        display: flex; /* Affiche le menu en mode desktop */
+        flex-direction: row; /* Aligne les éléments horizontalement */
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Aligne les éléments du header verticalement */
+        align-items: flex-start; /* Aligne les éléments à gauche */
+    }
+
+    nav.active {
+        display: flex; /* Affiche le menu lorsque la classe 'active' est ajoutée */
+        flex-direction: column; /* Aligne les éléments verticalement */
+        justify-content: center; /* Centre les éléments horizontalement */
+        align-items: center; /* Centre les éléments verticalement */
+        width: 100%; /* Utilise toute la largeur */
+    }
+
+    .menu {
+        display: none; /* Masque le menu par défaut en mode mobile */
+    }
+
+    .menu-toggle {
+        display: flex; /* Affiche le bouton de menu en mode mobile */
+    }
+
+    nav.active .menu {
+        display: flex; /* Affiche le menu lorsque la classe 'active' est ajoutée */
+        flex-direction: column; /* Aligne les éléments verticalement */
+        justify-content: center; /* Centre les éléments horizontalement */
+        align-items: center; /* Centre les éléments verticalement */
+        width: 100%; /* Utilise toute la largeur */
+    }
+
+    .auth-buttons, .auth-buttons a {
+        align-items: center; /* Centre les boutons horizontalement */
+        justify-content: center; /* Centre les boutons verticalement si le conteneur a une hauteur définie */
+        text-align: center; /* Centre le texte à l'intérieur des boutons */
+    }
+
+    .card-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Ajustement pour les petits écrans */
+    }
+
+    .player-card {
+        width: 100%; /* Ajustement pour les petits écrans */
+    }
+
+    .table-container, .chart-container {
+        width: 100%; /* S'assure que le conteneur s'adapte à la largeur de l'écran */
+        height: auto; /* Ajuste la hauteur automatiquement */
+    }
+
+    .next-button {
+        width: 80%; /* Ajustement pour les petits écrans */
+    }
+
+    .section {
+        padding: 10px; /* Réduit le padding sur les petits écrans */
+    }
+
+    .chronologie {
+        flex-direction: column; /* Aligne les éléments de la chronologie verticalement */
+    }
+
+    .content {
+        flex-direction: column; /* Aligne les éléments de contenu verticalement */
+        align-items: center; /* Centre les éléments */
+    }
+
+    .text {
+        padding-right: 0; /* Supprime le padding droit sur les petits écrans */
+    }
+
+    .slideshow {
+        width: 100%; /* Ajuste la largeur de la diapositive */
+    }
+
+    .slideshow-images img {
+        max-width: 100%; /* Assure que les images ne dépassent pas la largeur de leur conteneur */
+        height: auto; /* Maintient le ratio d'aspect */
+        object-fit: cover; /* Couvre l'espace sans déformer l'image */
+    }
+
+    .discord-info, .live-info {
+        width: 90%; /* Ajuste la largeur des sections d'information */
+    }
+
+    .form-container {
+        width:  100%; /* Permet à la forme de s'adapter à la largeur de l'écran */
+    }
+
+    .form-container {
+        padding: 15px; /* Réduit le padding pour les petits écrans */
+    }
+
+    .toggle-label {
+        width: 50px; /* Ajuste la largeur du toggle pour les petits écrans */
+        height: 25px; /* Ajuste la hauteur du toggle pour les petits écrans */
+    }
+
+    .toggle-label:before {
+        width: 22px; /* Ajuste la largeur du cercle du toggle */
+        height: 22px; /* Ajuste la hauteur du cercle du toggle */
+    }
+
+    .player-card {
+        min-height: 300px; /* Réduit la hauteur minimale pour les petits écrans */
+    }
+
+    .next-button {
+        padding: 8px 16px; /* Réduit le padding pour les petits écrans */
+    }
+
+    .accordion-container {
+        width: 90%; /* Ajuste la largeur de l'accordéon pour les petits écrans */
+    }
+
+    .accordion-header {
+        padding: 15px; /* Ajuste le padding de l'en-tête de l'accordéon */
+    }
+
+    .accordion-content {
+        padding: 15px; /* Ajuste le padding du contenu de l'accordéon */
+    }
+
+    .timeline {
+        flex-direction: column; /* Aligne les événements de la chronologie verticalement */
+    }
+
+    .timeline-event {
+        margin: 10px 0; /* Ajoute un espacement vertical entre les événements */
+    }
+
+    .stats-container {
+        flex-direction: column; /* Aligne les statistiques verticalement */
+    }
+
+    .table-container {
+        margin: 0; /* Supprime la marge pour les petits écrans */
+    }
+
+    .chart-container {
+        margin: 0; /* Supprime la marge pour les petits écrans */
+    }
+}

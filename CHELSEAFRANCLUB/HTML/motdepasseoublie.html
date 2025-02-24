@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Bienvenue sur le site du Chelsea Fran Club, une communauté passionnée de supporters de Chelsea FC.">
+        <meta name="keywords" content="Chelsea, FC, football, supporters, communauté">
+        <meta name="author" content="Chelsea Fran Club">
+        <title> ACCUEIL - Chelsea Fran Club</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="style/style2.css">
+    </head>
+    <style>
+     
+        main {
+            padding: 20px;
+            text-align: center; /* Centrer le contenu du main */
+        }
+
+        .form-group {
+         
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 40%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group button {
+    width: 30%; /* Réduit la largeur à 30% */
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+        .form-group button:hover {
+            background-color: var(--secondary-color);
+        }
+
+     
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="accueil.html"><img src="/images CLUB/Logos/LOGO_DU_SITE-removebg-preview - Copie.png" alt="Logo Chelsea Fran Club"></a>
+        </div>
+        <h1>Chelsea Fran Club</h1>    
+        <div class="auth-buttons">
+            <a href="index.php">S'inscrire/ Se connecter</a>
+          
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="accueilv2.html">Accueil</a></li>
+            <li><a href="actu2.html">Actualités</a></li>
+            <li><a href="match.html">Match</a></li>
+            <li>
+                <a href="#">Club</a>
+                <ul class="dropdown">
+                    <li><a href="histoire.html">Notre Histoire</a></li>
+                    <li><a href="statistiques.html">Statistiques</a></li>
+                    <li><a href="effectif.html">Effectif</a></li>
+                    <li><a href="classement.html">Saison 24/25</a></li>
+                </ul>
+            </li>
+            <li><a href="compte.html">Compte</a></li>
+        </ul>
+    </nav>
+    
+    <main class="motdepasseoublie">
+        <h2>Réinitialisation du mot de passe</h2>
+        <form id="reset-form" action="submit_reset.php" method="post">
+            <div class="form-group">
+                <label for="email">Adresse e-mail :</label>
+                <input type="email" id="email" name="email" required>
+                <small class="error-message" style="color: red; display: none;">Veuillez entrer votre adresse e-mail.</small>
+            </div>
+            <div class="form-group">
+                <button type="submit">Réinitialiser le mot de passe</button>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="mentionslegales.html">Mentions légales</a>
+            <a href="aproposde.html">A propos de</a>
+             <a href="faq.html">Foire à questions</a>
+             <a href="motdepasseoublie.html">Mot de passe oublié ?</a>
+           
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <form id="contact-form" action="votre_script_de_traitement.php" method="post">
+                <label for="name">Nom :</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">E-mail :</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message :</label>
+                <textarea id="message" name="message" required></textarea>
+                
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+
+        <div class="footer-section">
+            <h3>À propos</h3>
+            <p>Bienvenue sur notre blog dédié à Chelsea ! Ici, vous trouverez des analyses, des nouvelles et des discussions sur tout ce qui concerne notre équipe préférée.</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Politique de confidentialité</h3>
+            <p><a href="politique_de_confidentialite.html">Consultez notre politique de confidentialité</a> pour en savoir plus sur la manière dont nous protégeons vos données.</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Réseaux sociaux</h3>
+            <ul>
+                <li><a href="https://twitter.com/votreprofil" target="_blank">Twitter</a></li>
+                <li><a href="https://facebook.com/votreprofil" target="_blank">Facebook</a></li>
+                <li><a href="https://instagram.com/votreprofil" target="_blank">Instagram</a></li>
+                <li><a href="https://tiktok.com/@votreprofil" target="_blank">TikTok</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Mentions légales</h3>
+            <p><a href="mentions_legales.html">Consultez nos mentions légales</a> pour plus d'informations.</p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer-container {
+        display: flex;
+        justify-content: space-around;
+        padding: 20px;
+        background-color: #f8f8f8;
+    }
+    .footer-section {
+        width: 20%;
+    }
+    h3 {
+        margin-bottom: 10px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    label {
+        margin-top: 10px;
+    }
+    input, textarea {
+        margin-bottom: 10px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    button {
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    ul li {
+        margin: 5px 0;
+    }
+</style>

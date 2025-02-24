@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Bienvenue sur le site du Chelsea Fran Club, une communauté passionnée de supporters de Chelsea FC.">
+        <meta name="keywords" content="Chelsea, FC, football, supporters, communauté">
+        <meta name="author" content="Chelsea Fran Club">
+        <title> ACCUEIL - Chelsea Fran Club</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="../style/style2.css">
+        
+    </head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="accueil.html">
+                <img src="../images CLUB/Logos/LOGO_DU_SITE-removebg-preview - Copie.png" alt="Logo Chelsea Fran Club">
+            </a>
+        </div>
+        <h1>Chelsea Fran Club</h1>    
+        <div class="auth-buttons">
+            <a href="index.php">S'inscrire/ Se connecter</a>
+          
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="accueilv2.html">Accueil</a></li>
+            <li><a href="actu2.html">Actualités</a></li>
+            <li><a href="match.html">Match</a></li>
+            <li>
+                <a href="#">Club</a>
+                <ul class="dropdown">
+                    <li><a href="histoire.html">Notre Histoire</a></li>
+                    <li><a href="statistiques.html">Statistiques</a></li>
+                    <li><a href="effectif.html">Effectif</a></li>
+                    <li><a href="classement.html">Saison 24/25</a></li>
+                </ul>
+            </li>
+            <li><a href="compte.html">Compte</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div id="not-home">
+            <section id="prochain-match">
+                
+            </section>
+        </div>
+    
+        <section class="discord-info">
+            <h2><i class="fab fa-discord"></i> Rejoignez notre Forum Discord</h2>
+            <p>Connectez-vous pour discuter avec d'autres supporters et rester à jour sur les dernières nouvelles.</p>
+            <ul>
+                <li>Discussions en direct avec l'équipe</li>
+                <li>Mises à jour instantanées sur les nouvelles</li>
+            </ul>
+            <div id="discord-link-container">
+                <?php if (isset($_SESSION['user'])): ?>
+                <p>Rejoignez notre serveur Discord : <a href="https://discord.gg/gDkgb97C" target="_blank">Cliquez ici</a></p>
+            <?php endif; ?>
+            </div>
+        </section>
+ 
+        <section class="live-info">
+            <h2>Suivez le Match en Direct</h2>
+            <p>Pour suivre le match en direct, visitez <a href="https://www.flashscore.fr/equipe/chelsea/4fGZN2oK/" target="_blank" rel="noopener noreferrer">Flashscore.fr</a>.</p>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="mentionslegales.html">Mentions légales</a>
+            <a href="aproposde.html">A propos de</a>
+             <a href="faq.html">Foire à questions</a>
+             <a href="motdepasseoublie.html">Mot de passe oublié ?</a>
+           
+        </div>
+    </footer>
+
+    <script src="js/match.js"></script>
+</body>
+</html>
