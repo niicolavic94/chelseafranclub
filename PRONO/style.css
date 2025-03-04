@@ -1,0 +1,107 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9; /* Couleur de fond douce */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre horizontalement */
+    justify-content: center; /* Centre verticalement */
+    min-height: 100vh; /* Prend toute la hauteur de la fenêtre */
+}
+
+#form-container {
+    margin-bottom: 20px;
+    padding: 40px; /* Plus de padding pour un formulaire plus grand */
+    background-color: #ffffff; /* Fond blanc pour le formulaire */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    width: 400px; /* Largeur fixe pour le formulaire */
+    display: flex;
+    flex-direction: column; /* Aligne les éléments verticalement */
+    align-items: center; /* Centre les éléments horizontalement */
+}
+
+input, select {
+    margin: 10px 0; /* Marge verticale */
+    padding: 10px;
+    width: 100%; /* Prend toute la largeur du conteneur */
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 4px; /* Coins arrondis */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Ombre interne */
+    transition: border-color 0.3s; /* Transition pour le focus */
+}
+
+input:focus, select:focus {
+    border-color: #007bff; /* Couleur de bordure au focus */
+    outline: none; /* Supprime le contour par défaut */
+}
+
+button {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #007bff; /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 4px; /* Coins arrondis */
+    transition: background-color 0.3s; /* Transition pour le hover */
+    width: 100%; /* Prend toute la largeur du conteneur */
+    margin-top: 10px; /* Marge au-dessus du bouton */
+}
+
+button:hover {
+    background-color: #0056b3; /* Couleur au survol */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Espace au-dessus du tableau */
+    max-width: 600px; /* Largeur maximale du tableau */
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2; /* Couleur de fond des en-têtes */
+    font-weight: bold; /* Gras pour les en-têtes */
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Couleur de fond pour les lignes paires */
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Couleur de fond au survol des lignes */
+}
+
+select {
+    margin: 10px 0; /* Marge verticale */
+    padding: 10px;
+    width: 100%; /* Prend toute la largeur du conteneur */
+}
+
+option {
+    padding: 5px;
+}
+.score-container {
+    display: flex; /* Utilise flexbox pour aligner les éléments sur la même ligne */
+    align-items: center; /* Centre verticalement les éléments */
+    width: 100%; /* Prend toute la largeur du conteneur */
+    margin: 10px 0; /* Marge verticale */
+}
+
+.score-container input {
+    width: 45%; /* Largeur des champs de score */
+    margin: 0; /* Supprime la marge par défaut */
+}
+
+.vs {
+    margin: 0 10px; /* Espace autour du texte "vs" */
+    font-weight: bold; /* Met le texte "vs" en gras */
+}

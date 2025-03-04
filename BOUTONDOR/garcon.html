@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique de Vêtements - Bouton d'Or</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <h2>Garcon</h2>
+        <div class="filters" id="filterSection">
+            <button class="reset-filters" onclick="resetFilters()">Annuler</button>
+            <div class="filter-category">
+                <div class="expand-link" onclick="toggleCategory('prix')">
+                    <span>Prix</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="swatch-container" id="prix">
+                    <div class="price-range">
+                        <label for="min-price">MIN:</label>
+                        <input type="number" id="min-price" placeholder="0" value="0" onchange="updateSlider()">
+                        <label for="max-price">MAX:</label>
+                        <input type="number" id="max-price" placeholder="100" value="100" onchange="updateSlider()">
+                    </div>
+                    <div class="price-slider-container">
+                        <label for="min-price-slider">Sélectionnez la plage de prix :</label>
+                        <input type="range" class="price-slider" id="min-price-slider" min="0" max="100" value="0" step="1" oninput="updatePriceInputs()">
+                        <input type="range" class="price-slider" id="max-price-slider" min="0" max="100" value="100" step="1" oninput="updatePriceInputs()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-category">
+                <div class="expand-link" onclick="toggleCategory('couleurs')">
+                    <span>Couleurs</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="swatch-container" id="couleurs">
+                    <label><input type="checkbox" name="couleur" value="Rouge"> Rouge</label>
+                    <label><input type="checkbox" name="couleur" value="Bleu"> Bleu</label>
+                    <label><input type="checkbox" name="couleur" value="Vert"> Vert</label>
+                    <label><input type="checkbox" name="couleur" value="Jaune"> Jaune</label>
+                </div>
+            </div>
+
+            <div class="filter-category">
+                <div class="expand-link" onclick="toggleCategory('age')">
+                    <span>Âge</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="swatch-container" id="age">
+                    <label><input type="checkbox" name="age" value="1 à 12 mois"> 3 à 6 ans </label>
+                    <label><input type="checkbox" name="age" value="1 à 12 mois"> 6 à 9 ans </label>
+                    <label><input type="checkbox" name="age" value="1 à 12 mois"> 9 à 12 ans </label>
+                </div>
+            </div>
+
+            <div class="filter-category">
+                <div class="expand-link" onclick="toggleCategory('tri')">
+                    <span>Tri par</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="swatch-container" id="tri">
+                    <label><input type="checkbox" name="tri" value="Nouveautés"> Nouveautés</label>
+                    <label><input type="checkbox" name="tri" value="Top ventes"> Top ventes</label>
+                    <label><input type="checkbox" name="tri" value="Promotions"> Promotions</label>
+                </div>
+            </div>
+
+            <button class="show-filters" onclick="applyFilters()">Afficher</button>
+        </div>
+
+        <div class="product-type-buttons"> 
+            <div class="filter-icon product-type-button filter-button" onclick="toggleFilters()">
+                <i class="fas fa-sliders-h"></i> Filtrer
+            </div>
+            <button class="product-type-button" onclick="showProductType('manteaux')">Manteaux</button>
+            <button class="product-type-button" onclick="showProductType('pulls')">Pull & Sweat</button>
+            <button class="product-type-button" onclick="showProductType('pantalons')">Pantalons</button>
+            <button class="product-type-button" onclick="showProductType('tshirts')">T-shirt</button>
+            <button class="product-type-button" onclick="showProductType('sous-vetements')">Sous-vêtements</button>
+        </div>
+
+      
+        <div class="categories">
+            <div class="category-item">
+                <a href="#">
+                    <img alt="Tendance" src="https://storage.googleapis.com/a1aa/image/ug2GvyLggYajIhBusPQIFBcJMLbdF7QVq7bLepNRORIheFBUA.jpg" />
+                </a>
+                <button class="category-button">TENDANCE</button>
+            </div>
+            <div class="category-item">
+                <a href="#">
+                    <img alt="Nouveautés" src="https://storage.googleapis.com/a1aa/image/2CmUj4md9zYpLpNKf3ICfTOf1Cn38xqFNuFbfTefc3edgeFBUA.jpg" />
+                </a>
+                <button class="category-button">NOUVEAUTES</button>
+            </div>
+            <div class="category-item">
+                <a href="#">
+                    <img alt="Promotions" src="https://storage.googleapis.com/a1aa/image/qOny1LAEc4Z6BZBJ6ODpfbzZtGpFg8FaA0OBy8j4H9bf8FBUA.jpg" />
+                </a>
+                <button class="category-button">PROMOTIONS</button>
+            </div>
+        </div>
+
+        <button id="showAllButton" onclick="showAllProducts()">Afficher tous les produits</button>
+
+        <div class="product-list" id="productList"></div>
+    </main>
+
+    <script>
+        const products = [
+            { id: 1, type: 'manteaux', name: 'Manteau d\'hiver', image: 'https://placehold.co/150?text=Manteau+d%27hiver', price: 80, color: 'Bleu', age: '12 à 24 mois' },
+            { id: 2, type: 'manteaux', name: 'Manteau léger', image: 'https://placehold.co/150?text=Manteau+l%C3%A9ger', price: 60, color: 'Rouge', age: '1 à 12 mois' },
+            { id: 3, type: 'pulls', name: 'Pull en laine', image: 'https://placehold.co/150?text=Pull+en+laine', price: 40, color: 'Vert', age: '24 à 36 mois' },
+            { id: 4, type: 'pantalons', name: 'Pantalon en jean', image: 'https://placehold.co/150?text=Pantalon+en+jean', price: 50, color: 'Jaune', age: '12 à 24 mois' },
+            { id: 5, type: 'tshirts', name: 'T-shirt basique', image: 'https://placehold.co/150?text=T-shirt+basique', price: 20, color: 'Rouge', age: '1 à 12 mois' },
+            { id: 6, type: 'sous-vetements', name: 'Sous-vêtement en coton', image: 'https://placehold.co/150?text=Sous-v%C3%AAtement+en+coton', price: 15, color: 'Bleu', age: '24 à 36 mois' },
+        ];
+
+        function showProductType(type) {
+            const productList = document.getElementById('productList');
+            productList.innerHTML = '';
+
+            const filteredProducts = products.filter(product => product.type === type);
+
+            filteredProducts.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+
+                const productImage = document.createElement('img');
+                productImage.src = product.image;
+                productImage.alt = product.name;
+
+                const productName = document.createElement('h4');
+                productName.textContent = product.name;
+
+                const wishlistButton = document.createElement('button');
+                wishlistButton.textContent = 'Ajouter à la wishlist';
+                wishlistButton.onclick = () => addToWishlist(product.name);
+
+                productDiv.appendChild(productImage);
+                productDiv.appendChild(productName);
+                productDiv.appendChild(wishlistButton);
+
+                productList.appendChild(productDiv);
+            });
+
+            productList.style.display = filteredProducts.length > 0 ? 'flex' : 'none';
+            document.getElementById('showAllButton').style.display = 'none'; // Masquer le bouton
+        }
+
+        function toggleFilters() {
+            const filterSection = document.getElementById('filterSection');
+            filterSection.style.display = filterSection.style.display === 'none' || filterSection.style.display === '' ? 'block' : 'none';
+        }
+
+        function toggleCategory(categoryId) {
+            const category = document.getElementById(categoryId);
+            category.style.display = category.style.display === 'none' || category.style.display === '' ? 'block' : 'none';
+        }
+
+        function resetFilters() {
+            const categories = ['age', 'tri', 'prix', 'couleurs'];
+            categories.forEach(categoryId => {
+                const category = document.getElementById(categoryId);
+                category.style.display = 'none';
+            });
+            const filterSection = document.getElementById('filterSection');
+            filterSection.style.display = 'none';
+            document.getElementById('min-price').value = 0;
+            document.getElementById('max-price').value = 100;
+            document.getElementById('min-price-slider').value = 0;
+            document.getElementById('max-price-slider').value = 100;
+            document.getElementById('showAllButton').style.display = 'block'; // Afficher le bouton
+        }
+
+        function addToWishlist(productName) {
+            alert(productName + ' a été ajouté à votre wishlist!');
+        }
+
+        function updatePriceInputs() {
+            const minSlider = document.getElementById('min-price-slider');
+            const maxSlider = document.getElementById('max-price-slider');
+            const minPriceInput = document.getElementById('min-price');
+            const maxPriceInput = document.getElementById('max-price');
+            minPriceInput.value = minSlider.value;
+            maxPriceInput.value = maxSlider.value;
+        }
+
+        function updateSlider() {
+            const minPriceInput = document.getElementById('min-price');
+            const maxPriceInput = document.getElementById('max-price');
+            const minSlider = document.getElementById('min-price-slider');
+            const maxSlider = document.getElementById('max-price-slider');
+            minSlider.value = minPriceInput.value;
+            maxSlider.value = maxPriceInput.value;
+        }
+
+        function showAllProducts() {
+            const productList = document.getElementById('productList');
+            productList.innerHTML = '';
+
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+                productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}"/>
+                    <h4>${product.name}</h4>
+                    <button onclick="addToWishlist('${product.name}')">Ajouter à la wishlist</button>
+                `;
+                productList.appendChild(productDiv);
+            });
+
+            productList.style.display = 'flex';
+            document.getElementById('showAllButton').style.display = 'none'; // Masquer le bouton
+        }
+
+        function applyFilters() {
+            const minPrice = parseInt(document.getElementById('min-price').value);
+            const maxPrice = parseInt(document.getElementById('max-price').value);
+            const selectedColors = Array.from(document.querySelectorAll('input[name="couleur"]:checked')).map(el => el.value);
+            const selectedAges = Array.from(document.querySelectorAll('input[name="age"]:checked')).map(el => el.value);
+
+            const filteredProducts = products.filter(product => {
+                const isInPriceRange = product.price >= minPrice && product.price <= maxPrice;
+                const isInColor = selectedColors.length === 0 || selectedColors.includes(product.color);
+                const isInAge = selectedAges.length === 0 || selectedAges.includes(product.age);
+
+                return isInPriceRange && isInColor && isInAge;
+            });
+
+            const productList = document.getElementById('productList');
+            productList.innerHTML = '';
+
+            filteredProducts.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+                productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}"/>
+                    <h4>${product.name}</h4>
+                    <button onclick="addToWishlist('${product.name}')">Ajouter à la wishlist</button>
+                `;
+                productList.appendChild(productDiv);
+            });
+
+            productList.style.display = filteredProducts.length > 0 ? 'flex' : 'none';
+            document.getElementById('showAllButton').style.display = 'none'; // Masquer le bouton
+        }
+    </script>
+</body>
+</html>

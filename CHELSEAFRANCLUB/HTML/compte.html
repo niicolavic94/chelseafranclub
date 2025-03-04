@@ -1,44 +1,4 @@
-<?php
-/*
-session_start(); // Assurez-vous que la session est démarrée
 
-// Vérifiez si l'utilisateur est connecté
-if (!isset($_SESSION['user'])) {
-    // L'utilisateur n'est pas connecté, redirigez vers la page de connexion
-    header('Location: index.php');
-    exit();
-}
-
-// Le reste de votre code pour le tableau de bord
-// Par exemple, afficher des informations utilisateur, etc.
-?>
-
-session_start();
-require 'db_connection.php'; // Inclure votre fichier de connexion à la base de données
-
-// Vérifiez si l'utilisateur est connecté
-if (!isset($_SESSION['user_id'])) {
-    header('Location: connexion.html'); // Redirigez vers la page de connexion si non connecté
-    exit();
-}
-
-// Récupérer les informations de l'utilisateur depuis la base de données
-$user_id = $_SESSION['user_id'];
-$stmt = $pdo->prepare("SELECT name, email FROM users WHERE id = :id");
-$stmt->execute(['id' => $user_id]);
-$user = $stmt->fetch();
-
-if (!$user) {
-    echo "Utilisateur non trouvé.";
-    exit();
-}
-
-// Récupérer l'historique des connexions
-$stmt = $pdo->prepare("SELECT login_time FROM login_history WHERE user_id = :user_id ORDER BY login_time DESC");
-$stmt->execute(['user_id' => $user_id]);
-$login_history = $stmt->fetchAll();
-*/
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -54,7 +14,7 @@ $login_history = $stmt->fetchAll();
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="style/style2.css">
+    <link rel="stylesheet" href="../style/style2.css">
 
 </head>
 <body>
@@ -66,7 +26,7 @@ $login_history = $stmt->fetchAll();
         </div>
         <h1>Chelsea Fran Club</h1>    
         <div class="auth-buttons">
-            <a href="index.php">S'inscrire/ Se connecter</a>
+            <a href="../php/index.php">S'inscrire/ Se connecter</a>
           
         </div>
     </header>
@@ -85,39 +45,28 @@ $login_history = $stmt->fetchAll();
                     <li><a href="classement.html">Saison 24/25</a></li>
                 </ul>
             </li>
-            <li><a href="compte.php">Compte</a></li>
+            <li><a href="compte.html">Compte</a></li>
         </ul>
     </nav>
  
     <main>
         <h2>Mon Compte</h2>
         
-        <section>
+        <section id="infosperso">
             <h3>Informations personnelles</h3>
-            <p>Nom : <?php echo htmlspecialchars($user['name']); ?></p>
-            <p>Email : <?php echo htmlspecialchars($user['email']); ?></p>
-            <a href="modifier_profil.php">Modifier mes informations</a>
+            <p>Nom : </p>
+            <p>Email : </p>
+           
         </section>
     
-        <section>
-            <h3>Historique des connexions</h3>
-            <ul>
-                <?php foreach ($login_history as $login): ?>
-                    <li>Connexion le <?php echo htmlspecialchars($login['login_time']); ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </section>
-    
-        <section>
+        <section id="discord">
             <h3>Communauté Discord</h3>
             <p>Rejoignez notre serveur Discord pour discuter avec d'autres fans !</p>
-            <a href="https://discord.gg/votre-lien" target="_blank">Rejoindre le serveur Discord</a>
+            <div class="centered-links">
+                <a href="https://discord.gg/gDkgb97C" target="_blank">Rejoindre le serveur Discord</a>
+            </div>
             <p>Consultez les différents salons pour discuter des matchs, partager des nouvelles, et plus encore.</p>
         </section>
-    
-        <div>
-            <a href="logout.php">Se déconnecter</a>
-        </div>
     </main>
     
     <footer>
@@ -129,5 +78,10 @@ $login_history = $stmt->fetchAll();
            
         </div>
     </footer>
+    <style>
+        .centered-links {
+            text-align: center;
+        }
+    </style>
 </body>
 </html>

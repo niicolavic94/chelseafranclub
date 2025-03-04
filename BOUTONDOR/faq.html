@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <link rel="stylesheet" href="style.css"> <!-- Lien vers votre fichier CSS -->
+    
+</head>
+<body class="faq-page"> 
+    <h2>Foire à Questions</h2>
+    <main class="faq">
+        <section>
+            <h2 class="faq-title">Questions Générales</h2>
+            <div class="faq-item">
+                <h3 class="faq-question" aria-expanded="false">Question 1 : Quel est le délai de livraison ?</h3>
+                <p class="faq-answer">Le délai de livraison est généralement de 3 à 5 jours ouvrables.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question" aria-expanded="false">Question 2 : Comment puis-je suivre ma commande ?</h3>
+                <p class="faq-answer">Vous pouvez suivre votre commande en utilisant le lien de suivi envoyé par email.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="faq-title">Questions Techniques</h2>
+            <div class="faq-item">
+                <h3 class="faq-question" aria-expanded="false">Question 1 : Comment réinitialiser mon mot de passe ?</h3>
+                <p class="faq-answer">Pour réinitialiser votre mot de passe, cliquez sur "Mot de passe oublié" sur la page de connexion.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question" aria-expanded="false">Question 2 : L'application est-elle disponible sur iOS et Android ?</h3>
+                <p class="faq-answer">Oui, notre application est disponible sur les deux plateformes.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="faq-title">Questions sur le Service Client</h2>
+            <div class="faq-item">
+                <h3 class="faq-question" aria-expanded="false">Question 1 : Comment contacter le service client ?</h3>
+                <p class="faq-answer">Vous pouvez contacter notre service client par email à support@example.com ou par téléphone au 01 23 45 67 89.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question" aria-expanded="false">Question 2 : Quels sont les horaires d'ouverture du service client ?</h3>
+                <p class="faq-answer">Notre service client est disponible du lundi au vendredi, de 9h à 18h.</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const answer = item.nextElementSibling;
+                const isVisible = answer.classList.toggle('visible'); // Ajoute ou retire la classe 'visible'
+                item.setAttribute('aria-expanded', isVisible); // Met à jour l'attribut aria
+            });
+        });
+    </script>
+</body>
+</html>

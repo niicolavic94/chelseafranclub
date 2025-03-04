@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre Panier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <section class="cart">
+            <h2>Votre Panier</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Description</th>
+                        <th>Quantité</th>
+                        <th>Prix Unitaire</th>
+                        <th>Prix Total</th>
+                        <th>Actions</th>
+                    </tr>
+                <tbody>
+                    <tr>
+                        <td><img src="produit1.jpg" alt="Produit 1" width="100"></td>
+                        <td>Produit 1 Description</td>
+                        <td><input type="number" value="1" min="1"></td>
+                        <td>30,00€</td>
+                        <td>30,00€</td>
+                        <td><button class="remove">Supprimer</button></td>
+                    </tr>
+                    <tr>
+                        <td><img src="produit2.jpg" alt="Produit 2" width="100"></td>
+                        <td>Produit 2 Description</td>
+                        <td><input type="number" value="1" min="1"></td>
+                        <td>60,00€</td>
+                        <td>60,00€</td>
+                        <td><button class="remove">Supprimer</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="summary">
+                <h3>Résumé de la Commande</h3>
+                <div class="summary-details">
+                    <div class="summary-item">
+                        <span>TVA :</span>
+                        <span>15,00€</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Total :</span>
+                        <span>90,00€</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="delivery-options">
+                <h3>Options de Livraison</h3>
+                <div class="delivery-option">
+                    <label>
+                        <input type="radio" name="delivery" value="standard" checked> Livraison Standard
+                    </label>
+                    <span class="delivery-price">Gratuit</span>
+                </div>
+                <div class="delivery-option">
+                    <label>
+                        <input type="radio" name="delivery" value="express"> Livraison Express (+5,00€)
+                    </label>
+                    <span class="delivery-price">+5,00€</span>
+                </div>
+            </div>
+
+            <div class="validate">
+                <button>Valider la Commande</button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

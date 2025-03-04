@@ -1,0 +1,166 @@
+/* Boutons */
+.styled-button {
+    display: inline-block;
+    background-color: #004AAD;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.styled-button:hover {
+    background-color: gold;
+    color: black;
+    transform: scale(1.05);
+}
+
+/* Corps et en-tête */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(#FFFFFF, #C2C2C2);
+    font-family: "michroma";
+}
+
+header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+}
+
+header .center {
+    color: #004AAD;
+    font-size: 40px;
+    text-align: center;
+    animation: rotate 5s linear infinite;
+}
+
+/* Navigation */
+.nav {
+    overflow: hidden;
+}
+
+.nav .menu {
+    list-style-type: none;
+    text-align: center;
+}
+
+.nav .menu li {
+    display: inline;
+}
+
+.nav .menu button {
+    background-color: #004AAD;
+    color: white;
+    padding: 20px;
+    border-radius: 1em;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+}
+
+.nav .menu button:hover {
+    color: black;
+    background-color: gold;
+}
+
+/* Footer */
+footer {
+    display: flex; /* Utilisation de flexbox pour un alignement facile */
+    justify-content: space-between; /* Espacement entre les éléments */
+    align-items: center; /* Centrer verticalement */
+    padding: 20px; /* Espacement interne pour le footer */
+    background-color: gold; /* Couleur de fond */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    width: 100%; /* S'assurer qu'il prend toute la largeur */
+}
+
+/* Styles pour les liens dans le footer */
+footer a {
+    color: #004AAD; /* Couleur des liens */
+    text-decoration: none; /* Pas de soulignement */
+    margin: 0 15px; /* Espacement entre les liens */
+    transition: color 0.3s; /* Transition pour le changement de couleur */
+}
+
+footer a:hover {
+    color: black; /* Couleur au survol */
+}
+
+/* Styles pour les icônes des réseaux sociaux */
+footer .right ul {
+    display: flex; /* Utilisation de flexbox pour aligner les icônes */
+    list-style: none; /* Pas de puces */
+    padding: 0; /* Pas de padding */
+}
+
+footer .right ul li {
+    margin: 0 10px; /* Espacement entre les icônes */
+}
+
+footer .right ul li img {
+    width: 30px; /* Largeur fixe pour les icônes */
+    height: auto; /* Garder les proportions */
+    transition: transform 0.3s; /* Transition pour l'effet de survol */
+}
+
+footer .right ul li img:hover {
+    transform: scale(1.1); /* Agrandir légèrement au survol */
+}
+
+/* Styles de contenu principal */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+}
+
+article {
+    border: 2px solid grey;
+    border-radius: 2em;
+    padding: 2em;
+    width: 15em;
+    margin-bottom: 3em;
+    background-color: #004AAD;
+}
+
+/* Formulaires */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+}
+
+form .form-group input[type="text"],
+form .form-group input[type="email"],
+form .form-group input[type="password"] {
+    background-color: gold;
+    border: 1px solid #004AAD;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form .form-group button {
+    background-color: #004AAD;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 30px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+form .form-group button:hover {
+    background-color: black;
+}

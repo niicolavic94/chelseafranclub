@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronostics Footballistiques</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="app.js"></script>
+  
+</head>
+<body>
+    <h1>Pronostics Footballistiques</h1>
+    <div id="form-container">
+        <input type="text" id="username" placeholder="Votre nom" required>
+        <select id="match">
+            <option value="">Sélectionnez un match</option>
+        </select>
+        <div class="score-container">
+            <input type="number" id="scoreA" placeholder="Score Équipe A" required>
+            <span class="vs">vs</span>
+            <input type="number" id="scoreB" placeholder="Score Équipe B" required>
+        </div>
+        <button id="submit">Soumettre Pronostic</button>
+    </div>
+
+    <h2>Classement des Pronostics</h2>
+    <table id="ranking">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Match</th>
+                <th>Score Équipe A</th>
+                <th> Score Équipe B</th>
+            </tr>
+        </thead>
+        <tbody id="ranking-body">
+            <!-- Les données seront insérées ici -->
+        </tbody>
+    </table>
+</body>
+</html>

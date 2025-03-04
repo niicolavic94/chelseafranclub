@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Bouton d'Or - Vêtements pour bébés et enfants"/>
+    <meta name="keywords" content="vêtements, bébés, enfants, mode"/>
+    <title>Bouton d'Or - Wishlist</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="wishlist-page"> 
+<header>
+    <img alt="Bouton d'Or logo" src="Logos/Logo marque/Logo_bouton.png" />
+    <h1>BOUTON D'OR</h1>
+    <div class="user-actions">
+        <a href="inscription.html">S'inscrire</a>
+        <a href="connexion.html">Se connecter</a>
+    
+    </div>
+</header>
+<nav class="navbar">
+        <div class="nav-links">
+            <a href="bebe.html">BEBE (0-36 mois)</a>
+            <a href="fille.html">FILLE (3-12 ans)</a>
+            <a href="garcon.html">GARCON (3-12 ans)</a>
+        </div>
+        <div class="search-bar">
+            <input placeholder="Search..." type="text" aria-label="Search" />
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="panier">
+            <a href="wishlist.html" class="wishlist">
+                <i class="fas fa-heart"></i>
+                <span>WISHLIST</span>
+            </a>
+            <a href="monpanier.html" class="panier-link">
+                <i class="fas fa-shopping-bag"></i>
+                <span>PANIER</span>
+            </a>
+        </div>
+    </nav>
+<main>
+    
+    <h2>Ma Wishlist</h2>
+    <div id="wishlist-container"></div>
+</main>
+
+<footer>
+ <a href="#"><i class="fas fa-envelope"></i></a>
+    <a href="#"><i class="fas fa-phone"></i></a>
+    <a href="#"><i class="fas fa-box"></i></a>
+    <a href="#"><i class="fas fa-credit-card"></i></a>
+    <a href="#"><i class="fas fa-truck"></i></a>
+    <a href="#"><i class="fas fa-question-circle"></i></a>
+    <a href="#">Mentions Légales</a>
+    <a href="#">C.V.G</a>
+    <a href="#"><i class="fab fa-tiktok"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+</footer>
+
+<script>
+    // Fonction pour afficher les produits de la wishlist
+    function afficherWishlist() {
+        const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        const wishlistContainer = document.getElementById('wishlist-container');
+
+        if (wishlist.length === 0) {
+            wishlistContainer.innerHTML = '<p>Votre wishlist est vide.</p>';
+            return;
+        }
+
+        wishlistContainer.innerHTML = ''; // Réinitialiser le conteneur avant d'ajouter les produits
+
+        wishlist.forEach(produit => {
+            const produitDiv = document.createElement('div');
+            produitDiv.classList.add('produit');
+
+            const imgElement = document.createElement('img');
+            imgElement.src = produit.image;
+            imgElement.alt = produit.nom;
+
+            const nomElement = document.createElement('h3');
+            nomElement.textContent = produit.nom; // Utilisation de textContent
+
+            const prixElement = document.createElement('p');
+            prixElement.classList.add('prix');
+            prixElement.textContent = `Prix: ${produit.prix} €`;
+
+            const supprimerIcon = document.createElement('i');
+            supprimerIcon.classList.add('fas', 'fa-trash', 'supprimer');
+            supprimerIcon.onclick = () => supprimerDeLaWishlist(produit.id);
+            supprimerIcon.title = "Supprimer";
+
+            const prixSupprimerDiv = document.createElement('div');
+            prixSupprimerDiv.classList.add('prix-supprimer');
+            prixSupprimerDiv.appendChild(prixElement);
+            prixSupprimerDiv.appendChild(supprimerIcon);
+
+            // Ajouter les éléments au produitDiv
+            produitDiv.appendChild(imgElement);
+            produitDiv.appendChild(nomElement);
+            produitDiv.appendChild(prixSupprimerDiv);
+
+            // Ajouter le produitDiv au conteneur de la wishlist
+            wishlistContainer.appendChild(produitDiv);
+        });
+    }
+
+    // Fonction pour supprimer un produit de la wishlist
+    function supprimerDeLaWishlist(id) {
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        wishlist = wishlist.filter(produit => produit.id !== id);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        afficherWishlist(); // Mettre à jour l'affichage
+    }
+
+    // Appeler la fonction pour afficher la wishlist au chargement de la page
+    document.addEventListener('DOMContentLoaded', afficherWishlist);
+</script>
+</body>
+</html>

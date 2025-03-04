@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Produit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body class="produit">
+    <div class="product-container">
+        <div class="product-image">
+            <img src="Logos/Logo marque/Logo_marque-removebg-preview.png" alt="Nom du Produit">
+        </div>
+        <div class="product-details">
+            <h2 class="product-title">Nom du Produit</h2>
+            <p>Description:</p>
+            <p>Composition</p>
+            <p class="product-price">49.99 €</p>
+            <div class="options">
+                <h3>Couleurs disponibles :</h3>
+                <div class="color-options">
+                    <div class="color-button" style="background-color: red;" title="Rouge"></div>
+                    <div class="color-button" style="background-color: green;" title="Vert"></div>
+                    <div class="color-button" style="background-color: blue;" title="Bleu"></div>
+                </div>
+            </div>
+            <div class="options-container">
+                <div class="colors">
+                    <h3>Couleurs :</h3>
+                    <select class="common-select color-select" id="colors">
+                        <option value="Rouge">Rouge</option>
+                        <option value="Bleu">Bleu</option>
+                        <option value="Vert">Vert</option>
+                    </select>
+                </div>
+                <div class="sizes">
+                    <h3>Taille :</h3>
+                    <select class="common-select" id="size">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                </div>
+            </div>
+            <div class="quantity">
+                <h3>Quantité :</h3>
+                <input type="number" class="quantity-input" value="1" min="1">
+            </div>
+            <div class="purchase-buttons"> 
+                <button class="purchase-button wishlist">Ajouter à la Wishlist</button>
+                <button class="purchase-button add-to-cart">Ajouter au Panier</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="reviews-section">
+        <h2 class="reviews-title">Avis des clients</h2>
+        <div class="review">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"Super produit, très satisfait de mon achat !"</p>
+        </div>
+        <div class="review">
+            <div class="stars">⭐⭐⭐⭐</div>
+            <p>"Bon rapport qualité-prix, je recommande."</p>
+        </div>
+        <div class="more-reviews" style="display: none;">
+            <div class="review">
+                <div class="stars">⭐⭐⭐⭐</div>
+                <p>"Produit de bonne qualité, je suis content."</p>
+            </div>
+            <div class="review">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"Excellent, je le recommande à tous !"</p>
+            </div>
+        </div>
+        <button id="show-more-reviews" class="show-more-button">Afficher plus d'avis</button>
+        <div class="review-form">
+            <h3>Soumettez votre avis</h3>
+            <label for="rating">Note :</label>
+            <select id="rating" class="common-select">
+                <option value="5">⭐⭐⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="1">⭐</option>
+            </select>
+            <textarea placeholder="Votre avis ici..."></textarea>
+            <button type="submit" class="submit-review">Envoyer</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('show-more-reviews').addEventListener('click', function() {
+            document.querySelector('.more-reviews').style.display = 'block';
+            this.style.display = 'none'; // Hide the button after clicking
+        });
+    </script>
+</body>
+</html>

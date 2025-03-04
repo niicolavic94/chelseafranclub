@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouton d'Or - Inscription</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Oswald:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="inscription"> 
+    <main>
+        <h2 class="inscription-title">Inscription</h2>
+        <div class="container inscription-container">
+            <form onsubmit="return validateForm()" class="form inscription-form">
+                <label for="email" class="label email-label">EMAIL</label>
+                <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
+
+                <label for="password" class="label password-label">MOT DE PASSE</label>
+                <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
+
+                <label for="confirm-password" class="label confirm-password-label">CONFIRMER MOT DE PASSE</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmez votre mot de passe" required>
+
+                <button type="submit" class="submit-button">VALIDER</button>
+                <p class="text login-text">Vous avez déjà un compte ? <a href="connexion.html" class="link login-link">Se connecter</a></p>
+            </form>
+        </div>
+    </main>
+</body>
+
+<script>
+    // Regex pour l'email et le mot de passe
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    function validateForm() {
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const confirmPassword = document.getElementById('confirm-password').value.trim();
+        let errorMessage = '';
+
+        // Vérification si les champs sont vides
+        if (!email) {
+            errorMessage += "Veuillez entrer votre email.\n";
+        } else if (!emailRegex.test(email)) {
+            errorMessage += "Veuillez entrer un email valide.\n";
+        }
+
+        if (!password) {
+            errorMessage += "Veuillez entrer votre mot de passe.\n";
+        } else if (!passwordRegex.test(password)) {
+            errorMessage += "Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.\n";
+        }
+
+        if (!confirmPassword) {
+            errorMessage += "Veuillez confirmer votre mot de passe.\n";
+        } else if (password !== confirmPassword) {
+            errorMessage += "Les mots de passe ne correspondent pas.\n";
+        }
+
+        // Si des erreurs sont présentes, les afficher
+        if (errorMessage) {
+            alert(errorMessage);
+            return false;
+        }
+
+        return true; // Si tout est valide
+    }
+</script>
+</body>
+</html>

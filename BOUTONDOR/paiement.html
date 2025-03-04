@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouton d'Or - Paiement</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet"/>
+    
+</head>
+<body class="paiement">
+    <div class="payment">
+        <h2>Détails de Paiement</h2>
+        <form id="payment-form">
+            <div>
+                <label for="payment-method">Méthode de paiement</label>
+                <select id="payment-method" name="payment-method" required>
+                    <option value="card">Carte Bancaire</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+            </div>
+
+            <div id="card-details">
+                <label for="name">Nom sur la carte</label>
+                <input type="text" id="name" name="name" required/>
+
+                <label for="card-number">Numéro de carte</label>
+                <input type="text" id="card-number" name="card-number" required maxlength="19" placeholder="1234 5678 9012 3456"/>
+
+                <div class="date-cvv-container">
+                    <div class="short">
+                        <label for="expiry">Date d'expiration</label>
+                        <input type="text" id="expiry" name="expiry" class="short" placeholder="MM/AA" required/>
+                    </div>
+                    <div class="short">
+                        <label for="cvv">CVV</label>
+                        <input type="number" id="cvv" name="cvv" class="short" required/>
+                    </div>
+                </div>
+            </div>
+
+            <div id="paypal-details" style="display: none;">
+                <p>Vous serez redirigé vers PayPal pour finaliser votre paiement.</p>
+            </div>
+
+            <div class="amount-container">
+                <label for="amount" class="amount-label">Montant</label>
+                <div id="amount" class="amount-display">0.00 €</div>
+            </div>
+
+            <button type="submit" class="submit-button">Payer</button>
+        </form>
+    </div>
+
+    <script>
+        const orderAmount = 100.00; // Montant de la commande
+        document.getElementById('amount').textContent = orderAmount.toFixed(2) + ' €'; // Format monétaire
+
+        // Afficher ou masquer les détails de paiement en fonction de la méthode sélectionnée
+        document.getElementById('payment-method').addEventListener('change', function() {
+            const cardDetails = document.getElementById('card-details');
+            const paypalDetails = document.getElementById('paypal-details');
+
+            if (this.value === 'card') {
+                cardDetails.style.display = 'block';
+                paypalDetails.style.display = 'none';
+            } else {
+                cardDetails.style.display = 'none';
+                paypalDetails.style.display = 'block';
+            }
+        });
+
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche le rechargement de la page
+
+            const formData = new FormData(this);
+            formData.append('email', 'exemple@domaine.com'); // Ajoutez l'email ici
+
+            if (formData.get('payment-method') === 'card') {
+                // Traitement du paiement par carte
+                fetch('/process-payment', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    alert(data); // Affichez la réponse du serveur
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                });
+            } else {
+                // Redirection vers PayPal (vous pouvez intégrer l'API PayPal ici)
+                alert('Redirection vers PayPal pour finaliser le paiement.');
+                // Ici, vous pouvez ajouter la logique pour rediriger vers PayPal
+            }
+        });
+    </script>
+</body>
+</html>

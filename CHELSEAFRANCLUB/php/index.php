@@ -1,33 +1,28 @@
 <?php
 session_start();
-require 'config/config.php';
-require 'models/UserModel.php';
-require 'controllers/UserController.php';
-require 'controllers/LogoutController.php'; // Inclure le contrôleur de déconnexion
+require_once 'controllers/AuthController.php';
 
-$userModel = new UserModel($bdd);
-$userController = new UserController($userModel);
-$logoutController = new LogoutController(); // Instancier le contrôleur de déconnexion
+$authController = new AuthController();
 
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
         case 'register':
-            $userController->register();
+            $authController->register();
             break;
         case 'login':
-            $userController->login();
+            $authController->login();
             break;
-        case 'forgot_password':
-            $userController->forgotPassword(); // Appeler la méthode de réinitialisation
+        case 'reset':
+            $authController->resetPassword();
             break;
         case 'logout':
-            $logoutController->logout(); // Gérer la déconnexion
+            $authController->logout();
             break;
         default:
-            $userController->login(); // Action par défaut
+            $authController->login();
             break;
     }
 } else {
-    $userController->login(); // Action par défaut
+    $authController->login();
 }
 ?>

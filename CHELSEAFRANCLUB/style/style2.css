@@ -1123,158 +1123,158 @@ button:hover {
 /* Responsive */
 @media (min-width: 769px) {
     nav {
-        display: flex; /* Affiche le menu en mode desktop */
+        display: flex; 
     }
 
     .menu-toggle {
-        display: none; /* Masque le bouton de menu en mode desktop */
+        display: none;
     }
 
     nav ul {
-        display: flex; /* Affiche le menu en mode desktop */
-        flex-direction: row; /* Aligne les éléments horizontalement */
+        display: flex; 
+        flex-direction: row; 
     }
 }
 
 @media (max-width: 768px) {
     header {
-        flex-direction: column; /* Aligne les éléments du header verticalement */
-        align-items: flex-start; /* Aligne les éléments à gauche */
+        flex-direction: column; 
+        align-items: flex-start; 
     }
 
     nav.active {
-        display: flex; /* Affiche le menu lorsque la classe 'active' est ajoutée */
-        flex-direction: column; /* Aligne les éléments verticalement */
-        justify-content: center; /* Centre les éléments horizontalement */
-        align-items: center; /* Centre les éléments verticalement */
-        width: 100%; /* Utilise toute la largeur */
+        display: flex; 
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center;
+        width: 100%; 
     }
 
     .menu {
-        display: none; /* Masque le menu par défaut en mode mobile */
+        display: none; 
     }
 
     .menu-toggle {
-        display: flex; /* Affiche le bouton de menu en mode mobile */
+        display: flex; 
     }
 
     nav.active .menu {
-        display: flex; /* Affiche le menu lorsque la classe 'active' est ajoutée */
-        flex-direction: column; /* Aligne les éléments verticalement */
-        justify-content: center; /* Centre les éléments horizontalement */
-        align-items: center; /* Centre les éléments verticalement */
-        width: 100%; /* Utilise toute la largeur */
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        width: 100%; 
     }
 
     .auth-buttons, .auth-buttons a {
-        align-items: center; /* Centre les boutons horizontalement */
-        justify-content: center; /* Centre les boutons verticalement si le conteneur a une hauteur définie */
-        text-align: center; /* Centre le texte à l'intérieur des boutons */
+        align-items: center;
+        justify-content: center; 
+        text-align: center; 
     }
 
     .card-container {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Ajustement pour les petits écrans */
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
     }
 
     .player-card {
-        width: 100%; /* Ajustement pour les petits écrans */
+        width: 100%; 
     }
 
     .table-container, .chart-container {
-        width: 100%; /* S'assure que le conteneur s'adapte à la largeur de l'écran */
-        height: auto; /* Ajuste la hauteur automatiquement */
+        width: 100%; 
+        height: auto; 
     }
 
     .next-button {
-        width: 80%; /* Ajustement pour les petits écrans */
+        width: 80%; 
     }
 
     .section {
-        padding: 10px; /* Réduit le padding sur les petits écrans */
+        padding: 10px; 
     }
 
     .chronologie {
-        flex-direction: column; /* Aligne les éléments de la chronologie verticalement */
+        flex-direction: column; 
     }
 
     .content {
-        flex-direction: column; /* Aligne les éléments de contenu verticalement */
-        align-items: center; /* Centre les éléments */
+        flex-direction: column; 
+        align-items: center; 
     }
 
     .text {
-        padding-right: 0; /* Supprime le padding droit sur les petits écrans */
+        padding-right: 0; 
     }
 
     .slideshow {
-        width: 100%; /* Ajuste la largeur de la diapositive */
+        width: 100%; 
     }
 
     .slideshow-images img {
-        max-width: 100%; /* Assure que les images ne dépassent pas la largeur de leur conteneur */
-        height: auto; /* Maintient le ratio d'aspect */
-        object-fit: cover; /* Couvre l'espace sans déformer l'image */
+        max-width: 100%; 
+        height: auto; 
+        object-fit: cover; 
     }
 
     .discord-info, .live-info {
-        width: 90%; /* Ajuste la largeur des sections d'information */
+        width: 90%; 
     }
 
     .form-container {
-        width:  100%; /* Permet à la forme de s'adapter à la largeur de l'écran */
+        width:  100%; 
     }
 
     .form-container {
-        padding: 15px; /* Réduit le padding pour les petits écrans */
+        padding: 15px; 
     }
 
     .toggle-label {
-        width: 50px; /* Ajuste la largeur du toggle pour les petits écrans */
-        height: 25px; /* Ajuste la hauteur du toggle pour les petits écrans */
+        width: 50px; 
+        height: 25px; 
     }
 
     .toggle-label:before {
-        width: 22px; /* Ajuste la largeur du cercle du toggle */
-        height: 22px; /* Ajuste la hauteur du cercle du toggle */
+        width: 22px; 
+        height: 22px; 
     }
 
     .player-card {
-        min-height: 300px; /* Réduit la hauteur minimale pour les petits écrans */
+        min-height: 300px; 
     }
 
     .next-button {
-        padding: 8px 16px; /* Réduit le padding pour les petits écrans */
+        padding: 8px 16px; 
     }
 
     .accordion-container {
-        width: 90%; /* Ajuste la largeur de l'accordéon pour les petits écrans */
+        width: 90%; 
     }
 
     .accordion-header {
-        padding: 15px; /* Ajuste le padding de l'en-tête de l'accordéon */
+        padding: 15px; 
     }
 
     .accordion-content {
-        padding: 15px; /* Ajuste le padding du contenu de l'accordéon */
+        padding: 15px; 
     }
 
     .timeline {
-        flex-direction: column; /* Aligne les événements de la chronologie verticalement */
+        flex-direction: column; 
     }
 
     .timeline-event {
-        margin: 10px 0; /* Ajoute un espacement vertical entre les événements */
+        margin: 10px 0; 
     }
 
     .stats-container {
-        flex-direction: column; /* Aligne les statistiques verticalement */
+        flex-direction: column; 
     }
 
     .table-container {
-        margin: 0; /* Supprime la marge pour les petits écrans */
+        margin: 0; 
     }
 
     .chart-container {
-        margin: 0; /* Supprime la marge pour les petits écrans */
+        margin: 0; 
     }
 }

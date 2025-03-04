@@ -1,10 +1,3 @@
-<?php
-session_start();
-
-// Vérifiez si l'utilisateur est connecté
-$isLoggedIn = isset($_SESSION['pseudo']);
-$pseudo = $isLoggedIn ? $_SESSION['pseudo'] : '';
-?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -32,12 +25,7 @@ $pseudo = $isLoggedIn ? $_SESSION['pseudo'] : '';
         </div>
         <h1>Chelsea Fran Club</h1>    
         <div class="auth-buttons">
-            <?php if ($isLoggedIn): ?>
-                <span>Bienvenue, <?php echo htmlspecialchars($pseudo); ?>!</span>
-                <a href="logout.php">Déconnexion</a>
-            <?php else: ?>
-                <a href="inscription.html">S'inscrire/ Se connecter</a>
-            <?php endif; ?>
+            <a href="../php/index.php">S'inscrire/ Se connecter</a>
         </div>
     </header>
     
@@ -60,19 +48,15 @@ $pseudo = $isLoggedIn ? $_SESSION['pseudo'] : '';
                     <li><a href="classement.html">Saison 24/25</a></li>
                 </ul>
             </li>
-            <?php if ($isLoggedIn): ?>
-                <li><a href="profile.php">Mon Profil</a></li>
-            <?php endif; ?>
+            <li><a href="compte.html">Compte</a></li>
         </ul>
     </nav>
     
     <main class="accueil">
         <section>
-            <?php if ($isLoggedIn): ?>
-                <h2>Bienvenue sur le site du Chelsea Fran Club, <?php echo htmlspecialchars($pseudo); ?>!</h2>
-            <?php else: ?>
+            
                 <h2>Bienvenue sur le site du Chelsea Fran Club</h2>
-            <?php endif; ?>
+            
             <div class="intro">
                 <p>Le Chelsea Fran Club est une communauté passionnée de supporters de Chelsea FC.</p>
                 <p>Partageons notre amour du football, discutons des matchs, et soutenons notre équipe favorite.</p>

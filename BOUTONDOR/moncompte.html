@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Bouton d'Or - Vêtements pour bébés et enfants"/>
+    <meta name="keywords" content="vêtements, bébés, enfants, mode"/>
+    <title>Bouton d'Or - Accueil</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet"/>
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="compte-page"> 
+    <div class="compte-account-page">
+        <aside class="compte-sidebar">
+            <h3>Mon compte</h3>
+            <nav>
+                <p class="compte-tablinks compte-active" onclick="openTab(event, 'compte-welcomeMessage')">Accueil</p>
+                <p class="compte-tablinks" onclick="openTab(event, 'compte-MesCommandes')">Mes commandes</p>
+                <p class="compte-tablinks" onclick="openTab(event, 'compte-MesDonnees')">Mes données personnelles</p>
+                <p class="compte-tablinks" onclick="openTab(event, 'compte-MesAdresses')">Mes adresses</p>
+                <p class="compte-tablinks" onclick="openTab(event, 'compte-MoyensPaiement')">Moyens de paiement</p>
+                <p class="compte-tablinks" onclick="openTab(event, 'compte-Parrainage')">Parrainage</p>
+            </nav>
+        </aside>
+
+        <main class="compte-content">
+            <div id="compte-welcomeMessage" class="compte-tab-content compte-active">
+                <h3>Bienvenue dans votre espace personnel</h3>
+                <p>Vous pouvez gérer vos commandes, vos données personnelles, vos adresses et vos moyens de paiement ici.</p>
+            </div>
+        
+            <div id="compte-MesCommandes" class="compte-tab-content">
+                <h3>Mes commandes</h3>
+                <table class="compte-table">
+                    <thead>
+                        <tr>
+                            <th class="compte-th">ID Commande</th>
+                            <th class="compte-th">Date</th>
+                            <th class="compte-th">Montant</th>
+                            <th class="compte-th">Détails</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="compte-td">001</td>
+                            <td class="compte-td">2023-10-01</td>
+                            <td class="compte-td">50€</td>
+                            <td class="compte-td"><button class="compte-button" onclick="toggleDetails('compte-details1')">Voir Détails</button></td>
+                        </tr>
+                        <tr>
+                            <td class="compte-td">002</td>
+                            <td class="compte-td">2023-10-05</td>
+                            <td class="compte-td">75€</td>
+                            <td class="compte-td"><button class="compte-button" onclick="toggleDetails('compte-details2')">Voir Détails</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="compte-details1" class="compte-details compte-hidden">
+                    <h5>Détails de la commande 001</h5>
+                    <p>Voici les détails de la commande 001.</p>
+                </div>
+                <div id="compte-details2" class="compte-details compte-hidden">
+                    <h5>Détails de la commande 002</h5>
+                    <p>Voici les détails de la commande 002.</p>
+                </div>
+            </div>
+            <div id="compte-MesDonnees" class="compte-tab-content">
+                <h3>Mes données personnelles</h3>
+                <form>
+                    <fieldset>
+                        <legend>Informations personnelles</legend>
+                        <div class="compte-personal-data-grid">
+                            <div class="compte-input-group">
+                                <label for="compte-nom">Nom:</label>
+                                <input type="text" id="compte-nom" name="nom" value="Dupont" required>
+                            </div>
+                            <div class="compte-input-group">
+                                <label for="compte-prenom">Prénom:</label>
+                                <input type="text" id="compte-prenom" name="prenom" value="Pierre" required>
+                            </div>
+                            <div class="compte-input-group">
+                                <label for="compte-datenaissance">Date de naissance:</label>
+                                <input type="date" id="compte-datenaissance" name="datenaissance" required>
+                            </div>
+                        </div>
+                        <div class="compte-personal-data-grid">
+                            <div class="compte-input-group">
+                                <label for="compte-email">Email:</label>
+                                <input type="email" id="compte-email" name="email" value="dupont@example.com" required>
+                            </div>
+                            <div class="compte-input-group">
+                                <label for="compte-telephone">Téléphone:</label>
+                                <input type="tel" id="compte-telephone" name="telephone" placeholder="Optionnel, ex: +33 1 23 45 67 89">
+                            </div>
+                        </div>
+                        <div class="compte-password-grid">
+                            <div class="compte-input-group">
+                                <label for="compte-ancien_motdepasse">Ancien mot de passe:</label>
+                                <input type="password" id="compte-ancien_motdepasse" name="ancien_motdepasse" required>
+                            </div>
+                            <div class="compte-input-group">
+                                <label for="compte-nouveau_motdepasse">Nouveau mot de passe:</label>
+                                <input type="password" id="compte-nouveau_motdepasse" name="nouveau_motdepasse" required>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <button class="compte-button" type="submit">Modifier</button>
+                </form>
+            </div>
+            <div id="compte-MesAdresses" class="compte-tab-content">
+                <h3>Mes adresses</h3>
+                <form>
+                    <fieldset>
+                        <legend>Adresse de livraison</legend>
+                        <div class="compte-input-grid">
+                            <div class="compte-input-group">
+                                <label for="compte-numeroRueLivraison">Numéro de rue:</label>
+                                <input type="text" id="compte-numeroRueLivraison" name="numeroRueLivraison" value="123" required>
+                            </div>
+                            <div class="compte-input-group">
+                                <label for="compte-rueLivraison">Rue:</label>
+                                <input type="text" id="compte-rueLivraison" name="rueLivraison" value="Rue de Paris" required>
+                            </div>
+                        </div>
+                        <div class="compte-address-grid">
+                            <div class="compte-input-group">
+                                <label for="compte-codePostalLivraison">Code postal:</label>
+                                <input type="text" id="compte-codePostalLivraison" name="codePostalLivraison" value="75001" required>
+                            </div>
+                            <div class="compte-input-group">
+                                <label for="compte-villeLivraison">Ville:</label>
+                                <input type="text" id="compte-villeLivraison" name="villeLivraison" value="Paris" required>
+                            </div>
+                            <div class="compte-input-group">
+                                <label for="compte-paysLivraison">Pays:</label>
+                                <input type="text" id="compte-PaysLivraison" name="paysLivraison" value="France" required>
+                            </div>
+                        </div>
+                        <button class="compte-button" type="submit">Modifier</button>
+                    </fieldset>
+                </form>
+            
+                <form>
+                    <fieldset>
+                        <legend>Adresse de facturation</legend>
+                        <div class="compte-input-grid">
+                            <div class="compte-input-group">
+                                <label for="compte-numeroRueFacturation">Numéro de rue:</label>
+                                <input type="text" id="compte-numeroRueFacturation" name="numeroRueFacturation" value="456" required>
+                            </div>
+                            <div class="compte-input-group">
+                                <label for="compte-rueFacturation">Rue:</label>
+                                <input type="text" id="compte-rueFacturation" name="rueFacturation" value="Avenue de Lyon" required>
+                            </div>
+                        </div>
+                        <div class="compte-address-grid">
+                            <div class="compte-input-group">
+                                <label for="compte-codePostalFacturation">Code postal:</label>
+                                <input type="text" id="compte-codePostalFacturation" name="codePostalFacturation" value="69001" required>
+                            </div>
+                            <div class="compte-input-group">
+                                <label for="compte-villeFacturation">Ville:</label>
+                                <input type="text" id="compte-villeFacturation" name="villeFacturation" value="Lyon" required>
+                            </div>
+                            <div class="compte-input-group">
+                                <label for="compte-paysFacturation">Pays:</label>
+                                <input type="text" id="compte-paysFacturation" name="paysFacturation" value="France" required>
+                            </div>
+                        </div>
+                        <button class="compte-button" type="submit">Modifier</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div id="compte-MoyensPaiement" class="compte-tab-content">
+                <h3>Moyens de paiement</h3>
+                <form>
+                    <fieldset>
+                        <legend>Informations de paiement</legend>
+                        <div class="compte-input-grid">
+                            <div class="compte-input-group">
+                                <label for="compte-carteBancaire">Numéro de carte bancaire:</label>
+                                <input type="text" id="compte-carteBancaire" name="carteBancaire" value="**** **** **** 1234" required>
+                            </div>
+                            <div class="compte-input-group">
+                                <label for="compte-comptePaypal">Compte Paypal:</label>
+                                <input type="text" id="compte-comptePaypal" name="comptePaypal" value="****@gmail.com" required>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <button class="compte-button" type="submit">Modifier</button>
+                </form>
+            </div>
+
+            <div id="compte-Parrainage" class="compte-tab-content">
+                <h3>Parrainage</h3>
+                <p>Partagez votre code de parrainage avec vos amis pour leur donner une réduction de 10% sur leur première commande!</p>
+                <p>Votre code de parrainage: <strong>PAR10</strong></p>
+            </div>
+        </main>
+    </div>
+    <script>
+        function openTab(evt, tabName) {
+            var tabcontent = document.getElementsByClassName("compte-tab-content");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("compte-active");
+            }
+            
+            var tablinks = document.getElementsByClassName("compte-tablinks");
+            for (var i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("compte-active");
+            }
+            
+            document.getElementById(tabName).classList.add("compte-active");
+            evt.currentTarget.classList.add("compte-active");
+        }
+
+        function toggleDetails(detailId) {
+            var detail = document.getElementById(detailId);
+            detail.classList.toggle("compte-hidden");
+        }
+    </script>
+</body>
+</html>
